@@ -14,8 +14,9 @@ export default function Login() {
     const formData = new FormData(e.currentTarget);
     try {
       await loginUser(formData);
-    } catch (err: any) {
-      setError(err.message || "Failed to log in");
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : "Failed to log in";
+      setError(errorMsg);
     }
   };
 
@@ -40,7 +41,7 @@ export default function Login() {
           <button type="submit" className="btn-primary w-full">Sign In</button>
         </form>
         <div className="text-center mt-6 text-secondary">
-          Don't have an account? <Link href="/signup" className="text-neon hover:underline">Sign up</Link>
+          Don&apos;t have an account? <Link href="/signup" className="text-neon hover:underline">Sign up</Link>
         </div>
       </div>
     </div>

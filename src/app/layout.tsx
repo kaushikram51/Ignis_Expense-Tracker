@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Flame, LogOut } from "lucide-react";
+import { Flame } from "lucide-react";
 import { getSession } from "@/lib/auth";
-import { logoutUser } from "./actions";
 import SidebarNav from "@/components/SidebarNav";
 
 export const metadata: Metadata = {

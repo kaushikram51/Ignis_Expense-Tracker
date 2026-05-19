@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutGrid, PieChart, Target, ArrowLeftRight, Settings } from "lucide-react";
+import { LayoutGrid, PieChart, Target, Settings } from "lucide-react";
 
 export default function SidebarNav() {
   const pathname = usePathname();

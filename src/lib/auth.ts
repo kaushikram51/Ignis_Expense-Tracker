@@ -5,7 +5,13 @@ import { NextRequest, NextResponse } from "next/server";
 const secretKey = "super-secret-key-change-in-production";
 const key = new TextEncoder().encode(secretKey);
 
-export async function encrypt(payload: any) {
+export interface SessionPayload {
+  userId: string;
+  expires: string | Date;
+  [key: string]: unknown;
+}
+
+export async function encrypt(payload: SessionPayload) {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -13,11 +19,11 @@ export async function encrypt(payload: any) {
     .sign(key);
 }
 
-export async function decrypt(input: string): Promise<any> {
+export async function decrypt(input: string): Promise<SessionPayload> {
   const { payload } = await jwtVerify(input, key, {
     algorithms: ["HS256"],
   });
-  return payload;
+  return payload as unknown as SessionPayload;
 }
 
 export async function login(userId: string) {

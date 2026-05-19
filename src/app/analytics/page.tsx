@@ -14,12 +14,12 @@ export default async function Analytics() {
   });
 
   // Group by day for the chart
-  const groupedData = expenseTransactions.reduce((acc: any, curr) => {
+  const groupedData = expenseTransactions.reduce((acc: Record<string, number>, curr) => {
     const day = curr.date.toLocaleDateString('en-US', { weekday: 'short' });
     if (!acc[day]) acc[day] = 0;
     acc[day] += curr.amount;
     return acc;
-  }, {});
+  }, {} as Record<string, number>);
 
   const chartData = Object.keys(groupedData).map(key => ({
     name: key,
@@ -27,12 +27,12 @@ export default async function Analytics() {
   }));
 
   // Group by category for expenses
-  const expenseCategoryData = expenseTransactions.reduce((acc: any, curr) => {
+  const expenseCategoryData = expenseTransactions.reduce((acc: Record<string, number>, curr) => {
     const categoryName = curr.category.charAt(0).toUpperCase() + curr.category.slice(1).toLowerCase();
     if (!acc[categoryName]) acc[categoryName] = 0;
     acc[categoryName] += curr.amount;
     return acc;
-  }, {});
+  }, {} as Record<string, number>);
 
   const expensePieData = Object.keys(expenseCategoryData).map(key => ({
     name: key,

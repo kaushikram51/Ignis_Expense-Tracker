@@ -14,8 +14,9 @@ export default function Signup() {
     const formData = new FormData(e.currentTarget);
     try {
       await signupUser(formData);
-    } catch (err: any) {
-      setError(err.message || "Failed to create account");
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : "Failed to create account";
+      setError(errorMsg);
     }
   };
 

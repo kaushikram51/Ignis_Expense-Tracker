@@ -2,7 +2,7 @@
 
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-export default function ExpenseChart({ data }: { data: any[] }) {
+export default function ExpenseChart({ data }: { data: { name: string; amount: number }[] }) {
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer>

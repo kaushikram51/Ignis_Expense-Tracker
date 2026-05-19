@@ -1,6 +1,6 @@
 "use client";
 
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
 export default function CategoryPieChart({ data }: { data: { name: string, value: number }[] }) {
   // Modern vibrant color palette for each category
@@ -35,7 +35,7 @@ export default function CategoryPieChart({ data }: { data: { name: string, value
         <Tooltip 
           contentStyle={{ backgroundColor: '#121212', border: '1px solid rgba(255, 0, 51, 0.15)', borderRadius: '8px' }}
           itemStyle={{ color: '#ffffff', fontWeight: 'bold' }}
-          formatter={(value: number) => `$${value.toLocaleString()}`}
+          formatter={(value) => `$${Number(value).toLocaleString()}`}
         />
         <Legend wrapperStyle={{ color: '#8a8a93' }} />
       </PieChart>
